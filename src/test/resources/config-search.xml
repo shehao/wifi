@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<search xmlns="http://www.digitalchina.com/schema/search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.digitalchina.com/schema/search http://123.56.142.45/elasticsearch.xsd">
+	
+	<nodes name="mo-es">
+		<node host="172.16.59.58" />
+	</nodes>
+	
+	<indices>
+		<index name="freewifi" debug="false">
+			<mappings>
+				<type name="meta" id="id" idAutoGet="true" dynamic="false" class="com.digitalchina.app.wifi.vo.FreeWifiVo">
+					<string name="name" analyzer="ik_max_word" search_analyzer="ik_max_word" boost="4"/>
+					<string name="ssid" index="not_analyzed"/>
+					<object name="category">
+						<string name="id" index="not_analyzed"/>
+						<string name="categoryName" analyzer="ik_max_word" search_analyzer="ik_max_word" boost="2"/>
+					</object> 
+					<geo_point name="location" analyzer="ik_max_word" search_analyzer="ik_max_word" boost="4"/>
+				</type>
+				<type name="category" id="id" idAutoGet="true" dynamic="false" class="com.digitalchina.app.wifi.vo.CategoryVo">
+					<string name="categoryName" index="not_analyzed"/>
+				</type>
+			</mappings>
+		</index>
+	</indices>
+
+</search>

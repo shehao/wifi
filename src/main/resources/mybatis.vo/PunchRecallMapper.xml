@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digitalchina.app.wifi.dao.PunchRecallDao">
+	<insert id="insertVo">
+		insert into t_punch_recall
+		(
+			id, 
+			lon, 
+			lat, 
+			address,
+			attractions_id, 
+			user_id
+		)
+		values(
+			#{id}, 
+			#{location.lon},
+			#{location.lat},
+			#{location.address},
+			#{attractionsId},
+			#{userId}
+		)
+	</insert>
+	
+	<resultMap type="punchRecallVo" id="PunchRecallResult">
+		<id property="id" column="id"/>
+		<result property="attractionsId" column="attractions_id"/>
+		<result property="userId" column="user_id"/>
+		<association property="location" javaType="geoPointVo">
+			<result property="address" column="address"/>
+			<result property="lon" column="lon"/>
+			<result property="lat" column="lat"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectVosByAttractionsId" resultMap="PunchRecallResult">
+		select * from t_punch_recall where
+		    1=1
+		<if test="attractionsId != null">
+			and attractions_id = #{attractionsId}
+		</if>
+	</select>
+	
+	<select id="selectVosByUserId" resultMap="PunchRecallResult">
+		select * from t_punch_recall where
+		    1=1
+		<if test="userId != null">
+			and user_id = #{userId}
+		</if>
+	</select>
+</mapper>

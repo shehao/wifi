@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" strict="true">
+	<Properties>
+		<Property name="level">INFO</Property>
+		<Property name="layout"><![CDATA[ [%-5level] <%date{HH:mm:ss,SSS}> #%logger(%thread)>> %method(%line)# - %message%n]]></Property>
+		<!-- <Property name="server">123.56.142.45</Property>
+		<Property name="user">log</Property>
+		<Property name="pwd">log_000000</Property>
+		<Property name="db">logdb</Property>
+		<Property name="col">govoffice</Property>
+		<Property name="port">27017</Property> -->
+	</Properties>
+	<Appenders>
+		<Console name="STDOUT">
+			<PatternLayout pattern="${layout}"/>
+		</Console>
+		<!-- <NoSql name="DBRECORD">
+      		<MongoDb databaseName="${db}" collectionName="${col}" server="${server}" port="${port}"
+               username="${user}" password="${pwd}" />
+    	</NoSql> -->
+	</Appenders>
+	<Loggers>
+		<AsyncLogger name="org.springframework" level="${level}"/>
+		<AsyncLogger name="druid.sql" level="${level}" />
+		<AsyncLogger name="org.apache.http" level="${level}"/>
+		<AsyncLogger name="net.rubyeye.xmemcached" level="${level}"/>
+		<AsyncLogger name="org.mybatis.spring" level="${level}"/>
+		<AsyncLogger name="com.mongodb" level="${level}"/>
+		<AsyncLogger name="com.digitalchina" level="${level}"/>
+		<Root level="INFO">
+			<!-- <AppenderRef ref="DBRECORD" /> -->
+			<AppenderRef ref="STDOUT" />
+		</Root>
+	</Loggers>
+</Configuration>

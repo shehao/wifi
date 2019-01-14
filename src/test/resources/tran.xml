@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DOCTYPE tran-config SYSTEM "tran.dtd" -->
+<tran-config>
+
+	<tran name="CW0001" operation="获取Wifi分类"
+		servicePath="com.digitalchina.app.wifi.service.WifiService.findWifiCategories" access="public"/>
+	<tran name="CW0002" operation="获取Wifi列表"
+		servicePath="com.digitalchina.app.wifi.service.WifiService.findWifis" access="public"/>
+	<!-- <tran  name="CW0003" operation="新增wifi分类"
+		servicePath="com.digitalchina.app.wifi.service.WifiService.saveWifiCategory" access="public"/>
+	<tran  name="CW0004" operation="新增一个wifi"
+		servicePath="com.digitalchina.app.wifi.service.WifiService.saveWifi" access="public"/> -->
+	<tran  name="CW0005" operation="从exle表格读取wifi数据保存"
+		servicePath="com.digitalchina.app.wifi.service.WifiService.updateWifiDataFromXlsx" access="public"/>
+	<tran  name="CW0006" operation="wifi打卡"
+		servicePath="com.digitalchina.app.wifi.service.PunchService.punch" access="protect"/>
+
+</tran-config>

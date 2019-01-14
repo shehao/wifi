@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digitalchina.app.wifi.dao.AttractionsDao">
+	<insert id="insertVo">
+		insert into t_attractions
+		(
+			id, 
+			lon, 
+			lat, 
+			address,
+			radius, 
+			attractions_name
+		)
+		values(
+			#{id}, 
+			#{location.lon},
+			#{location.lat},
+			#{location.address},
+			#{radius},
+			#{attractionsName}
+		)
+	</insert>
+	
+	<resultMap type="attractionsVo" id="AttractionsResult">
+		<id property="id" column="id"/>
+		<result property="radius" column="radius"/>
+		<result property="attractionsName" column="attractions_name"/>
+		<association property="location" javaType="geoPointVo">
+			<result property="address" column="address"/>
+			<result property="lon" column="lon"/>
+			<result property="lat" column="lat"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectVos" resultMap="AttractionsResult">
+		select * from t_attractions where 1=1
+	</select>
+	
+</mapper>
